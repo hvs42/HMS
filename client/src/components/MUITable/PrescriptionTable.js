@@ -96,8 +96,9 @@ export default function PrecriptionTable({ prescriptionList }) {
 
    
     const handlePayment =  async (value) => {
-        const apiSetQrcode = process.env.REACT_APP_SERVER_URL + '/api/paypal/payment';
-        //console.log(val);
+        console.log(value);
+        const apiSetQrcode = 'http://localhost:3001/api/paypal/payment';
+        
         try {
             //console.log(token);
             const response = await fetch(apiSetQrcode, {
@@ -109,7 +110,7 @@ export default function PrecriptionTable({ prescriptionList }) {
                     value,
                 }),
             });
-            //  await //console.log(response);
+             await console.log(response);
             if (response.ok) {
                 const json = await response.json();
                 window.location.assign(json.link);
