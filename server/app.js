@@ -38,6 +38,8 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
         console.log(err);
     });
 
+
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log("App listening on port " + PORT);
@@ -70,6 +72,8 @@ app.use(ProfileRoute);
 
 // //API for deleting a  patient by ID
 // app.delete('/patients/:id', deletePatientByID);
+
+
 app.use('/api/paypal', require('./routes/api/paypal'));
 
 

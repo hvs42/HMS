@@ -10,18 +10,19 @@ paypal.configure({
 });
 
 router.post('/payment', async (req, res) => {
+  console.log('payment call');
   const { value } = req.body;
   let prescriptions = await Prescription.findById(value).populate({path: 'prescribedMed.medicineId'});
   let prescribedMed = prescriptions.prescribedMed;
   let items_array = [];
   var subtotal = 200;
   var total = 200;
-  items_array[0] = {"tax":0,"sku":value,"currency":"CAD","name":"Visitation","description":"Visitation","quantity":1,"price":"200.00"}
+  items_array[0] = {"tax":0,"sku":value,"currency":"USD","name":"Visitation","description":"Visitation","quantity":1,"price":"200.00"}
   if(prescribedMed){
     prescribedMed.map((pre, index) => (
       total+=(pre.medicineId.price*pre.qty),
       subtotal+=(pre.medicineId.price*pre.qty),
-      items_array[index+1] = {"tax":0,"sku":pre.medicineId._id,"currency":"CAD","name":pre.medicineId.name,"description":pre.medicineId.description,"quantity":pre.qty,"price":(pre.medicineId.price).toFixed(2)}
+      items_array[index+1] = {"tax":0,"sku":pre.medicineId._id,"currency":"USD","name":pre.medicineId.name,"description":pre.medicineId.description,"quantity":pre.qty,"price":(pre.medicineId.price).toFixed(2)}
     ));
   }
  
@@ -40,7 +41,7 @@ router.post('/payment', async (req, res) => {
           items: items_array,
         },
         amount: {
-          currency: 'CAD',
+          currency: 'USD',
           total: total,
           details: {
             shipping: '0', //shipping
