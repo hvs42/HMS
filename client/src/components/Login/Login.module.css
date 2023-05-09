@@ -1,7 +1,7 @@
 #loginBody {
     height: 100vh;
     width: 100%;
-    background-image: url('/public/images/login-background.png');
+    background-image: url('/public/images/Login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -46,7 +46,8 @@
 #loginBtn {
     padding: 10px;
     color: white;
-    background-color: #31b372;
+    /* background-color: #31b372; */
+    background-color: #ff6f3c;
     border: 0;
     /* margin-top: 40px; */
     margin-right: 20px;
@@ -55,9 +56,9 @@
 
 .signUpBtn {
     padding: 10px;
-    color: green;
+    color: orangered;
     background-color: white;
-    border: 1px solid #31b372;
+    border: 1px solid #ff6f3c;
     /* margin-top: 40px; */
     border-radius: 2px;
 }

@@ -8,7 +8,7 @@
 }
 
 #signUpBG {
-    background-image: url('/public/images/signup-background.png');
+    background-image: url('/public/images/SignUp.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -19,7 +19,7 @@
 }
 
 h2 {
-    color: #048C7F;
+    color: #ff6f3c;
     text-align: center;
     /* margin-top: 120px; */
 }
@@ -51,10 +51,11 @@ input[type=checkbox] {
 #signUpBtn {
     padding: 10px 60px;
     color: white;
-    background-color: #31b372;
+    background-color: #ff6f3c;
     border: 0;
     margin: 40px;
-}
+} 
+
 
 #signUpBtn:hover {
     transition: all .1s ease-in-out;
