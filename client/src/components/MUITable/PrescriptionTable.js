@@ -1,5 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../Context/UserContext';
+import axios from "axios";
+
+import loginlogo from '../../assets/img/logo.png';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -12,7 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
-import axios from "axios";
+
 import moment from "moment"
 
 
@@ -26,14 +29,15 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DownloadIcon from '@mui/icons-material/Download';
 
 
-
 function createData(patientName, doctorName, appointmentDate, appointmentTime, prescribedMed, remarks, actionsID, paid) {
     return { patientName, doctorName, appointmentDate, appointmentTime, prescribedMed, remarks, actionsID, paid };
 }
 
-export default function PrecriptionTable({ prescriptionList }) {
+export default function PrecriptionTable({ paymentDone, setPaymentDone, prescriptionList }) {
 
     const { currentUser } = useContext(UserContext);
+    
+    
 
     let columns = [];
     if (currentUser.userType == "Patient") {
@@ -94,27 +98,54 @@ export default function PrecriptionTable({ prescriptionList }) {
         );
     }
 
-   
+    const initPayment = (data, value) => {
+		const options = {
+			key: process.env.key_id,
+			amount: data.amount,
+			currency: data.currency,
+			name: "Visitation",
+			description: "Test Transaction",
+			image: '../../assets/img/logo.png',
+			order_id: data.id,
+			handler: async (response) => {
+				try {
+					const verifyUrl = "http://localhost:3001/api/paypal/verify";
+					const { data } = await axios.post(verifyUrl, {response: response, value: value});
+                    setPaymentDone(paymentDone+1);
+					console.log(data);
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			theme: {
+				color: "#3399cc",
+			},
+		};
+		const rzp1 = new window.Razorpay(options);
+		rzp1.open();
+	};
     const handlePayment =  async (value) => {
-        console.log(value);
-        const apiSetQrcode = 'http://localhost:3001/api/paypal/payment';
-        
+        // console.log(value);
+                
         try {
             //console.log(token);
-            const response = await fetch(apiSetQrcode, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value,
-                }),
-            });
-             await console.log(response);
-            if (response.ok) {
-                const json = await response.json();
-                window.location.assign(json.link);
-            }
+            const apiSetQrcode = 'http://localhost:3001/api/paypal/payment';
+
+            const { status, data } = await axios.post(apiSetQrcode, {value: value});
+            // const response = await fetch(apiSetQrcode, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         value,
+            //     }),
+            // });
+
+            await console.log(status + "\ndata : " + data.data);
+            initPayment(data.data, value);
+            
+
         } catch (err) {
             console.error(err);
         }

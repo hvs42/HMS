@@ -22,6 +22,10 @@ function PrescriptionList() {
     const [patientSelected, setPatientSelected] = useState("");
     const [doctorSelected, setDoctorSelected] = useState("");
 
+
+    const [paymentDone, setPaymentDone] = useState(0);
+
+
     const [errorDialogueBoxOpen, setErrorDialogueBoxOpen] = useState(false);
     const [errorList, setErrorList] = useState([]);
     const handleDialogueOpen = () => {
@@ -93,6 +97,13 @@ function PrescriptionList() {
     }, []
     );
 
+    useEffect(() => {
+        getPrescription()
+        getPatients()
+        getDoctors()
+    }, [paymentDone]
+    );
+
     return (
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
@@ -141,7 +152,7 @@ function PrescriptionList() {
                             </div>
                         </div>
                     </form>
-                    <PrescriptionTable prescriptionList={prescriptions} />
+                    <PrescriptionTable paymentDone={paymentDone} setPaymentDone={setPaymentDone} prescriptionList={prescriptions} />
                 </div>
             </div>
         </Box>
