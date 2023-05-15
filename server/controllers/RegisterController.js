@@ -77,13 +77,13 @@ const sendVerificationEmail = async (email, token) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS
+            user: process.env.USER,
+            pass: process.env.PASS
         }
     });
 
     const mailOptions = {
-        from: process.env.GMAIL_USER,
+        from: '"Green Hill Hospital" <greenhillhospital@gmail.com>',
         to: email,
         subject: 'Verify your email address',
         text: `Please click the following link to verify your email address: http://localhost:3001/verify/${token}`,
@@ -131,8 +131,8 @@ const signUp = (req, res) => {
                                     User.deleteOne({ _id: userDetails });
                                     res.json({ message: "error", errors: [error2.message] });
                                 } else {
-                                    // let resp = sendVerificationEmail(userDetails.email, verificationToken.token);
-                                    // // resp();
+                                    let resp = sendVerificationEmail(userDetails.email, verificationToken.token);
+                                    resp();
                                     res.json({ message: "success" });
                                 }
                             }
@@ -152,7 +152,10 @@ const signUp = (req, res) => {
                                     User.deleteOne({ _id: userDetails });
                                     res.json({ message: "error", errors: [error2.message] });
                                 } else {
-                                    // let resp = sendVerificationEmail(userDetails.email, verificationToken.token);
+                                    let resp = sendVerificationEmail(userDetails.email, verificationToken.token)
+                                    .then((result) => {
+                                        console.log(result);
+                                    });
                                     res.json({ message: "success" });
                                 }
                             }

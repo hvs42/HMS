@@ -43,13 +43,16 @@ const loginUser = (req, res) => {
                 res.status(400).json({ message: "error", errors: [error.message] });
             } else if (!user) {
                 res.status(401).json({ message: "error", errors: ["User not found"] });
-            } else {
+            }else {
+                console.log(user);
                 bcrypt.compare(password, user.password, (error2, result) => {
                     if (error2) {
                         res.status(401).json({ message: "error", errors: [error2.message] });
                     } else if (!result) {
                         res.status(401).json({ message: "error", errors: ["Invalid password"] });
-                    } else {
+                    } else if(user.activated == false){
+                        res.status(401).json({ message: "error", errors: ["Please verify your account. A verification email has been sent to your email."] });
+                    }else {
                         const currentUser = {
                             "firstName": user.firstName,
                             "lastName": user.lastName,

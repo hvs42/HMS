@@ -50,9 +50,9 @@ const loginUser = (req, res) => {
                     } else if (!result) {
                         res.status(401).json({ message: "error", errors: ["Invalid password"] });
                     } 
-                    // else if(user.activated == false){
-                    //     res.status(401).json({ message: "error", errors: ["Please verify your account. A verification email has been sent to your email."] });
-                    // } 
+                    else if(user.activated == false){
+                        res.status(401).json({ message: "error", errors: ["Please verify your account. A verification email has been sent to your email."] });
+                    } 
                     else {
                         const currentUser = {
                             "firstName": user.firstName,

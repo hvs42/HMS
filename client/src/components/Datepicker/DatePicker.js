@@ -12,7 +12,7 @@ export default function ResponsiveDatePickers() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       {/* <DesktopDatePicker defaultValue={dayjs('2022-04-17')} /> */}
-      <StaticDatePicker defaultValue={dayjs('2022-04-17')} />
+      <StaticDatePicker defaultValue={dayjs('2022-04-17')}/>
     </LocalizationProvider>
   );
 }

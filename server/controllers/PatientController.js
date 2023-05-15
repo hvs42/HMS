@@ -97,7 +97,6 @@ const savePatient = async (req, res) => {
                 lastName: newPatient.lastName,
                 password: newPatient.password,
                 userType: 'Patient',
-                activated: 1,
             },
             (error, userDetails) => {
                 if (error) {

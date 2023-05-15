@@ -105,7 +105,7 @@ const saveUser = async (req, res) => {
                 lastName: newUser.lastName,
                 password: newUser.password,
                 userType: newUser.userType,
-                activated: true
+                activated: false
             },
             (error, userDetails) => {
                 if (error) {

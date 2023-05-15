@@ -161,6 +161,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
 
         // const pdfContents = response.data;
         // await writeFile('file.pdf', pdfContents);
+        // console.log(resp.data);
         const downloadUrl = window.URL.createObjectURL(resp.data);
 
         // open pdf file on new tab
@@ -171,16 +172,16 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
 
         return resp
     }
-
+    
     let rows = prescriptionList.map((precription) => {
-
+        console.log(precription.paid);
         return createData(
             precription.appointmentId.patientId.userId.firstName + ' ' + precription.appointmentId.patientId.userId.lastName,
             precription.appointmentId.doctorId.userId.firstName + ' ' + precription.appointmentId.doctorId.userId.lastName,
             formatDateForDateInput(precription.appointmentId.appointmentDate),
             precription.appointmentId.appointmentTime,
-            formatPrescription(precription.prescribedMed),
-            precription.remarks,
+            (precription.paid?formatPrescription(precription.prescribedMed):"Please Pay your Bills to see Prescription and remarks"),
+            (precription.paid?precription.remarks:""),
             precription._id,
             precription.paid
         )
