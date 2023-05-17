@@ -86,7 +86,7 @@ export default function DoctorAppointmentTable({ bookedAppointments, deleteBooke
         }
 
         console.log(reqObj)
-        let response = await axios.post(`http://localhost:3001/prescription/`,
+        let response = await axios.post(`https://hms-backend-dvsa.onrender.com/prescription/`,
             reqObj,
             {
                 headers: {
@@ -117,7 +117,7 @@ export default function DoctorAppointmentTable({ bookedAppointments, deleteBooke
     }
 
     const setFormProperties = async (appID) => {
-        const response = await axios.get(`http://localhost:3001/appointments/${appID}`, {
+        const response = await axios.get(`https://hms-backend-dvsa.onrender.com/appointments/${appID}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }

@@ -43,7 +43,7 @@ function AddUser() {
     }
 
 
-    fetch('http://localhost:3001/users', {
+    fetch('https://hms-backend-dvsa.onrender.com/users', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

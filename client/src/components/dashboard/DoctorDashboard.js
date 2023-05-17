@@ -21,7 +21,7 @@ export default function DoctorDashboard() {
 
 
 	const getAppointmentCount = async () => {
-		const response = await axios.get(`http://localhost:3001/count/appointments`,
+		const response = await axios.get(`https://hms-backend-dvsa.onrender.com/count/appointments`,
 			{
 				headers: {
 					authorization: `Bearer ${localStorage.getItem("token")}`
@@ -37,7 +37,7 @@ export default function DoctorDashboard() {
 	}
 
 	const getPatientsTreatedCount = async () => {
-		const response = await axios.get(`http://localhost:3001/count/patients/treated`,
+		const response = await axios.get(`https://hms-backend-dvsa.onrender.com/count/patients/treated`,
 			{
 				headers: {
 					authorization: `Bearer ${localStorage.getItem("token")}`
@@ -52,7 +52,7 @@ export default function DoctorDashboard() {
 
 	const getBookedSlots = async () => {
 		// console.log(moment(new Date()).format('YYYY-MM-DD'))
-		let response = await axios.post(`http://localhost:3001/appointments`,
+		let response = await axios.post(`https://hms-backend-dvsa.onrender.com/appointments`,
 			{
 				'isTimeSlotAvailable': false,
 				'appDate': moment(new Date()).format('YYYY-MM-DD')
@@ -80,7 +80,7 @@ export default function DoctorDashboard() {
 	}
 	const getPrescription = async () => {
         
-        let response = await axios.post(`http://localhost:3001/prescriptions`,{},
+        let response = await axios.post(`https://hms-backend-dvsa.onrender.com/prescriptions`,{},
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

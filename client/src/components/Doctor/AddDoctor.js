@@ -42,7 +42,7 @@ function Adddoctor() {
     }
 
 
-    fetch('http://localhost:3001/doctors', {
+    fetch('https://hms-backend-dvsa.onrender.com/doctors', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

@@ -29,7 +29,7 @@ function Editmedicine() {
   }, []);
 
   const getmedicineById = async () => {
-    const response = await axios.get(`http://localhost:3001/medicines/${id}`);
+    const response = await axios.get(`https://hms-backend-dvsa.onrender.com/medicines/${id}`);
     console.log(response);
     setCompany(response.data.company);
     setName(response.data.name);
@@ -40,7 +40,7 @@ function Editmedicine() {
   const updatemedicine = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3001/medicines/${id}`, {
+      await axios.patch(`https://hms-backend-dvsa.onrender.com/medicines/${id}`, {
         company,
         name,
         description,

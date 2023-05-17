@@ -37,7 +37,7 @@ function EditPatient() {
   }, []);
 
   const getPatientById = async () => {
-    const response = await axios.get(`http://localhost:3001/patients/${id}`);
+    const response = await axios.get(`https://hms-backend-dvsa.onrender.com/patients/${id}`);
     //console.log(response);
     setFirstName(response.data.userId.firstName);
     setLastName(response.data.userId.lastName);
@@ -55,7 +55,7 @@ function EditPatient() {
   const updatePatient = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3001/patients/${id}`, {
+      await axios.patch(`https://hms-backend-dvsa.onrender.com/patients/${id}`, {
         firstName,
         lastName,
         username,

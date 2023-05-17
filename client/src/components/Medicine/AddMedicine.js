@@ -37,7 +37,7 @@ function Addmedicine() {
     }
 
 
-    fetch('http://localhost:3001/medicines', {
+    fetch('https://hms-backend-dvsa.onrender.com/medicines', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

@@ -33,7 +33,7 @@ function UserList() {
 
     const getUsers = async () => {
 
-        const response = await axios.get("http://localhost:3001/users", {
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/users", {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             },
@@ -48,7 +48,7 @@ function UserList() {
     const deleteUser = async (id) => {
 
         try {
-            await axios.delete(`http://localhost:3001/users/${id}`, {
+            await axios.delete(`https://hms-backend-dvsa.onrender.com/users/${id}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`
                 }

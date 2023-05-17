@@ -28,7 +28,7 @@ function DoctorList() {
     );
 
     const getdoctors = async () => {
-        const response = await axios.get("http://localhost:3001/doctors", {
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/doctors", {
             params: {
                 name: name
             }
@@ -38,7 +38,7 @@ function DoctorList() {
 
     const deleteDoctor = async (id) => {
         try {
-            await axios.delete(`http://localhost:3001/doctors/${id}`);
+            await axios.delete(`https://hms-backend-dvsa.onrender.com/doctors/${id}`);
             getdoctors();
         } catch (error) {
             setErrorList(error);

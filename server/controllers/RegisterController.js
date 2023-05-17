@@ -86,8 +86,8 @@ const sendVerificationEmail = async (email, token) => {
         from: '"Green Hill Hospital" <greenhillhospital@gmail.com>',
         to: email,
         subject: 'Verify your email address',
-        text: `Please click the following link to verify your email address: http://localhost:3001/verify/${token}`,
-        html: `<p>Please click this link to verify your account:</p> <a href="http://localhost:3001/verify/${token}">Verify</a>`,
+        text: `Please click the following link to verify your email address: https://hms-backend-dvsa.onrender.com/verify/${token}`, 
+        html: `<p>Please click this link to verify your account:</p> <a href="https://hms-backend-dvsa.onrender.com/verify/${token}">Verify</a>`,
     };
 
     let resp = await transporter.sendMail(mailOptions);

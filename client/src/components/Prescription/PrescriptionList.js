@@ -38,12 +38,12 @@ function PrescriptionList() {
     };
 
     const getPatients = async () => {
-        const response = await axios.get("http://localhost:3001/patients");
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/patients");
         setPatientList(response.data);
     };
 
     const getDoctors = async () => {
-        const response = await axios.get("http://localhost:3001/doctors");
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/doctors");
         setDoctorList(response.data);
     };
 
@@ -67,7 +67,7 @@ function PrescriptionList() {
             "patientId": patientId, "doctorId" : doctorId
         }
         
-        let response = await axios.post(`http://localhost:3001/prescriptions`, reqObj,
+        let response = await axios.post(`https://hms-backend-dvsa.onrender.com/prescriptions`, reqObj,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

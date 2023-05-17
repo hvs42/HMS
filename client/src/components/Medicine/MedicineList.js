@@ -29,7 +29,7 @@ function MedicineList() {
     );
 
     const getmedicines = async () => {
-        const response = await axios.get("http://localhost:3001/medicines", {
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/medicines", {
             params: {
                 name: name
             }
@@ -40,7 +40,7 @@ function MedicineList() {
     const deleteMedicine = async (id) => {
 
         try {
-            await axios.delete(`http://localhost:3001/medicines/${id}`);
+            await axios.delete(`https://hms-backend-dvsa.onrender.com/medicines/${id}`);
             getmedicines();
         } catch (error) {
             setErrorList(error);

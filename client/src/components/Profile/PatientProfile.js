@@ -41,7 +41,7 @@ function PatientProfile() {
 
   const getPatientById = async () => {
     let patientUserId = currentUser.userId;
-    const response = await axios.get(`http://localhost:3001/profile/patient/${patientUserId}`);
+    const response = await axios.get(`https://hms-backend-dvsa.onrender.com/profile/patient/${patientUserId}`);
     //console.log(response);
     setPatientId(response.data._id);
     setFirstName(response.data.userId.firstName);
@@ -60,7 +60,7 @@ function PatientProfile() {
   const updatePatient = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3001/patients/${patientId}`, {
+      await axios.patch(`https://hms-backend-dvsa.onrender.com/patients/${patientId}`, {
         firstName,
         lastName,
         username,

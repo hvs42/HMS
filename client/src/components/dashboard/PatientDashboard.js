@@ -56,7 +56,7 @@ export default function PatientDashboard() {
 
 	const getBookedSlots = async () => {
     
-            let response = await axios.post(`http://localhost:3001/appointments`,
+            let response = await axios.post(`https://hms-backend-dvsa.onrender.com/appointments`,
                 {
                     'isTimeSlotAvailable': false
                 },
@@ -108,7 +108,7 @@ export default function PatientDashboard() {
     }
 	const getPrescription = async () => {
         
-        let response = await axios.post(`http://localhost:3001/prescriptions`,{},
+        let response = await axios.post(`https://hms-backend-dvsa.onrender.com/prescriptions`,{},
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

@@ -36,7 +36,7 @@ function AdminProfile() {
 
   const getAdminById = async () => {
     let adminUserId = currentUser.userId;
-    const response = await axios.get(`http://localhost:3001/profile/admin/${adminUserId}`);
+    const response = await axios.get(`https://hms-backend-dvsa.onrender.com/profile/admin/${adminUserId}`);
     //console.log(response);
     setUserId(response.data._id);
     setFirstName(response.data.firstName);
@@ -51,7 +51,7 @@ function AdminProfile() {
     e.preventDefault();
     //alert(userId);
     try {
-      await axios.patch(`http://localhost:3001/profile/admin/${userId}`, {
+      await axios.patch(`https://hms-backend-dvsa.onrender.com/profile/admin/${userId}`, {
         firstName,
         lastName,
         username,

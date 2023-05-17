@@ -36,7 +36,7 @@ function EditUser() {
   }, []);
 
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:3001/users/${id}`, {
+    const response = await axios.get(`https://hms-backend-dvsa.onrender.com/users/${id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`
       }
@@ -53,7 +53,7 @@ function EditUser() {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3001/users/${id}`,
+      await axios.patch(`https://hms-backend-dvsa.onrender.com/users/${id}`,
         {
           firstName,
           lastName,

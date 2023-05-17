@@ -109,7 +109,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
 			order_id: data.id,
 			handler: async (response) => {
 				try {
-					const verifyUrl = "http://localhost:3001/api/paypal/verify";
+					const verifyUrl = "https://hms-backend-dvsa.onrender.com/api/paypal/verify";
 					const { data } = await axios.post(verifyUrl, {response: response, value: value});
                     setPaymentDone(paymentDone+1);
 					console.log(data);
@@ -129,7 +129,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
                 
         try {
             //console.log(token);
-            const apiSetQrcode = 'http://localhost:3001/api/paypal/payment';
+            const apiSetQrcode = 'https://hms-backend-dvsa.onrender.com/api/paypal/payment';
 
             const { status, data } = await axios.post(apiSetQrcode, {value: value});
             // const response = await fetch(apiSetQrcode, {
@@ -154,7 +154,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
 
     const handleDownloadReceipt = async (value) => {
         // console.log("Download Receipt clicked prescriptionId-", value)
-        const resp = await axios.get(`http://localhost:3001/prescription/invoice/${value}`,
+        const resp = await axios.get(`https://hms-backend-dvsa.onrender.com/prescription/invoice/${value}`,
         {
             responseType: 'blob',
         });

@@ -80,7 +80,7 @@ function AdminAppointment() {
         }
         // console.log("reqObj",reqObj);
 
-        let response = await axios.put(`http://localhost:3001/appointments/`,
+        let response = await axios.put(`https://hms-backend-dvsa.onrender.com/appointments/`,
             reqObj,
             {
                 headers: {
@@ -123,7 +123,7 @@ function AdminAppointment() {
         // newSlotList[newSlotList.length] = "hello"
         // setAvailableSlots(newSlotList);
         if (doctorSelected) {
-            let response = await axios.post(`http://localhost:3001/appointments`,
+            let response = await axios.post(`https://hms-backend-dvsa.onrender.com/appointments`,
                 {
                     'isTimeSlotAvailable': true,
                     'appDate': formatDateForDateInput(date),
@@ -167,7 +167,7 @@ function AdminAppointment() {
         // newSlotList[newSlotList.length] = "hello"
         // setAvailableSlots(newSlotList);
 
-        let response = await axios.post(`http://localhost:3001/appointments`,
+        let response = await axios.post(`https://hms-backend-dvsa.onrender.com/appointments`,
             {
                 'isTimeSlotAvailable': false,
                 'appDate': formatDateForDateInput(date),
@@ -207,7 +207,7 @@ function AdminAppointment() {
 
     const deleteBookedSlots = async (appId) => {
         console.log("delete slot with id", appId);
-        let response = await axios.delete(`http://localhost:3001/appointments/`,
+        let response = await axios.delete(`https://hms-backend-dvsa.onrender.com/appointments/`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -226,7 +226,7 @@ function AdminAppointment() {
     }
 
     const getDoctorList = async () => {
-        let response = await axios.get(`http://localhost:3001/doctors`,
+        let response = await axios.get(`https://hms-backend-dvsa.onrender.com/doctors`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`
@@ -261,7 +261,7 @@ function AdminAppointment() {
     }
 
     const getDepartmentList = async () => {
-        let response = await axios.get(`http://localhost:3001/departments`,
+        let response = await axios.get(`https://hms-backend-dvsa.onrender.com/departments`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`
@@ -280,7 +280,7 @@ function AdminAppointment() {
     }
 
     const getPatients = async () => {
-        const response = await axios.get("http://localhost:3001/patients");
+        const response = await axios.get("https://hms-backend-dvsa.onrender.com/patients");
         setPatientList(response.data);
     };
 
@@ -305,7 +305,7 @@ function AdminAppointment() {
         else {
             // console.log(slot);
             try {
-                let response = await axios.post(`http://localhost:3001/appointments/add`,
+                let response = await axios.post(`https://hms-backend-dvsa.onrender.com/appointments/add`,
                     {
                         'appDate': getformDate(form.appDate.value),
                         'timeSlots': timeSlots,
