@@ -174,13 +174,13 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
     }
     
     let rows = prescriptionList.map((precription) => {
-        console.log(precription.paid);
+        console.log(currentUser.userType);
         return createData(
             precription.appointmentId.patientId.userId.firstName + ' ' + precription.appointmentId.patientId.userId.lastName,
             precription.appointmentId.doctorId.userId.firstName + ' ' + precription.appointmentId.doctorId.userId.lastName,
             formatDateForDateInput(precription.appointmentId.appointmentDate),
             precription.appointmentId.appointmentTime,
-            (precription.paid?formatPrescription(precription.prescribedMed):"Please Pay your Bills to see Prescription and remarks"),
+            ((precription.paid || (currentUser.userType==="Admin" || currentUser.userType==="Doctor"))?formatPrescription(precription.prescribedMed):"Please Pay your Bills to see Prescription and remarks"),
             (precription.paid?precription.remarks:""),
             precription._id,
             precription.paid
@@ -222,7 +222,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
                                                 return (
                                                     <TableCell key={column.id} align={column.align}>
 
-                                                        {row["paid"] == false && <Button
+                                                        {(row["paid"] == false && (currentUser.userType!=="Admin" || currentUser.userType!=="Doctor")) && <Button
                                                             variant="contained"
                                                             color="success"
                                                             startIcon={<AttachMoneyIcon />}
@@ -233,7 +233,7 @@ export default function PrecriptionTable({ paymentDone, setPaymentDone, prescrip
                                                             Pay Now
                                                         </Button>}
 
-                                                        {row["paid"] == true && <Button
+                                                        {row["paid"] == true &&(currentUser.userType==="Admin" || currentUser.userType==="Doctor") && <Button
                                                             variant="contained"
                                                             color="success"
                                                             startIcon={<DownloadIcon />}

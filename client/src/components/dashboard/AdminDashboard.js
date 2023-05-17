@@ -202,7 +202,7 @@ export default function AdminDashboard() {
 								</table>
 								{(!bookedAppointments || bookedAppointments?.length === 0) &&
 									<h3 className='mt-5 text-center '>
-										You have no appointments today
+										There is no appointments today
 									</h3>		
 								}
 							</div>

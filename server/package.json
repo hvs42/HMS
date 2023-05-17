@@ -4,7 +4,8 @@
   "description": "Server side code of HMS",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "build": "npm i"
   },
   "author": "",
   "license": "ISC",
